@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="scala,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -94,18 +94,13 @@
 
 
 
-<meta name="description" content="scala中很多看似花哨的语法表达，其实背后并不是语言级别的支持，都是些语法糖。当我们拿不准一些语句最终被翻译为什么，可以通过一些编译时参数来帮助我们分析。 Scalar 1$ scalac -Xprint:typer A.scala Scala 1$ scala -Xprint:typer -e &apos;def incr(i:Int) = i+1&apos;">
-<meta name="keywords" content="scala">
-<meta property="og:type" content="article">
-<meta property="og:title" content="scala 诊断工具">
-<meta property="og:url" content="http://yoursite.com/2019/05/08/Scala诊断工具/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="博客">
+<meta property="og:url" content="http://yoursite.com/tags/scala/index.html">
 <meta property="og:site_name" content="博客">
-<meta property="og:description" content="scala中很多看似花哨的语法表达，其实背后并不是语言级别的支持，都是些语法糖。当我们拿不准一些语句最终被翻译为什么，可以通过一些编译时参数来帮助我们分析。 Scalar 1$ scalac -Xprint:typer A.scala Scala 1$ scala -Xprint:typer -e &apos;def incr(i:Int) = i+1&apos;">
 <meta property="og:locale" content="中文">
-<meta property="og:updated_time" content="2019-05-08T12:50:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="scala 诊断工具">
-<meta name="twitter:description" content="scala中很多看似花哨的语法表达，其实背后并不是语言级别的支持，都是些语法糖。当我们拿不准一些语句最终被翻译为什么，可以通过一些编译时参数来帮助我们分析。 Scalar 1$ scalac -Xprint:typer A.scala Scala 1$ scala -Xprint:typer -e &apos;def incr(i:Int) = i+1&apos;">
+<meta name="twitter:title" content="博客">
 
 
 
@@ -134,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/08/Scala诊断工具/">
+  <link rel="canonical" href="http://yoursite.com/tags/scala/">
 
 
 
 
 
-  <title>scala 诊断工具 | 博客</title>
+  <title>Tag: scala | 博客</title>
   
 
 
@@ -165,7 +160,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -249,151 +244,52 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block tag">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>scala<small>Tag</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/08/Scala诊断工具/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="peinwu">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="博客">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">scala 诊断工具</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/2019/05/08/Scala诊断工具/" itemprop="url">
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span itemprop="name">scala 诊断工具</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-08T19:55:47+08:00">
-                2019-05-08
-              </time>
-            
+            </a>
+        
+      </h2>
 
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-05-08T19:55:47+08:00" content="2019-05-08">
+          05-08
+        </time>
+      </div>
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>scala中很多看似花哨的语法表达，其实背后并不是语言级别的支持，都是些语法糖。当我们拿不准一些语句最终被翻译为什么，可以通过一些编译时参数来帮助我们分析。</p>
-<p>Scalar</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ scalac -<span class="type">Xprint</span>:typer <span class="type">A</span>.scala</span><br></pre></td></tr></table></figure>
-<p>Scala</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ scala -<span class="type">Xprint</span>:typer -e <span class="symbol">'def</span> incr(i:<span class="type">Int</span>) = i+<span class="number">1</span>'</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/scala/" rel="tag"># scala</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/05/08/scala-特殊符号大全/" rel="next" title="scala 特殊符号大全">
-                <i class="fa fa-chevron-left"></i> scala 特殊符号大全
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
       
     </div>
+
   </div>
+  
+  
+  
+
+  
 
 
           </div>
@@ -401,10 +297,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -590,10 +482,10 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-
+  
 
   
 
