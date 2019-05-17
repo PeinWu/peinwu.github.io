@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="scala,">
 
 
 
@@ -94,13 +94,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta name="description" content="在个性化召回过程结合embedding+tf-idf 1.利用user的曝光点击序列去拿到用户的embedding向量 2.对embedding向量进行聚类，目前我们聚类算法使用spherical KMeans,距离度量使用cos距离 3.1 直接拿每个聚类，取热门item 3.2 为了避免一些头部的item在各个类别的用户中都占据头部位置，改善集中度，结合TF-IDF的思想。 特定类别A中所有用">
+<meta name="keywords" content="scala">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TF-IDF,embedding">
+<meta property="og:url" content="http://yoursite.com/2019/05/07/基于用户聚类的协同过滤/index.html">
 <meta property="og:site_name" content="博客">
+<meta property="og:description" content="在个性化召回过程结合embedding+tf-idf 1.利用user的曝光点击序列去拿到用户的embedding向量 2.对embedding向量进行聚类，目前我们聚类算法使用spherical KMeans,距离度量使用cos距离 3.1 直接拿每个聚类，取热门item 3.2 为了避免一些头部的item在各个类别的用户中都占据头部位置，改善集中度，结合TF-IDF的思想。 特定类别A中所有用">
 <meta property="og:locale" content="中文">
+<meta property="og:updated_time" content="2019-05-17T04:30:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博客">
+<meta name="twitter:title" content="TF-IDF,embedding">
+<meta name="twitter:description" content="在个性化召回过程结合embedding+tf-idf 1.利用user的曝光点击序列去拿到用户的embedding向量 2.对embedding向量进行聚类，目前我们聚类算法使用spherical KMeans,距离度量使用cos距离 3.1 直接拿每个聚类，取热门item 3.2 为了避免一些头部的item在各个类别的用户中都占据头部位置，改善集中度，结合TF-IDF的思想。 特定类别A中所有用">
 
 
 
@@ -129,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/07/基于用户聚类的协同过滤/">
 
 
 
 
 
-  <title>Archive | 博客</title>
+  <title>TF-IDF,embedding | 博客</title>
   
 
 
@@ -160,7 +165,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,212 +249,158 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/07/基于用户聚类的协同过滤/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="peinwu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">TF-IDF,embedding</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-07T19:55:47+08:00">
+                2019-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        Um..! 5 posts in total. Keep on posting.
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h2 class="archive-year motion-element" id="archive-year-2019">2019</h2>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/08/scala-特殊符号大全/" itemprop="url">
-              
-                <span itemprop="name">scala 特殊符号大全</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-08T19:55:47+08:00" content="2019-05-08">
-          05-08
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/08/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-08T19:40:30+08:00" content="2019-05-08">
-          05-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/07/GBDT问题汇总/" itemprop="url">
-              
-                <span itemprop="name">GBDT问题汇总</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-07T19:55:47+08:00" content="2019-05-07">
-          05-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>在个性化召回过程结合embedding+tf-idf</p>
+<p>1.利用user的曝光点击序列去拿到用户的embedding向量</p>
+<p>2.对embedding向量进行聚类，目前我们聚类算法使用spherical KMeans,距离度量使用cos距离</p>
+<p>3.1 直接拿每个聚类，取热门item</p>
+<p>3.2 为了避免一些头部的item在各个类别的用户中都占据头部位置，改善集中度，结合TF-IDF的思想。</p>
+<p>特定类别A中所有用户的点击当作文档，其中每个item当作单词</p>
+<p>计算TF-IDF的值，这个值就是召回分，这样就能得到特定类别下的item倒排列表。</p>
+<p>推荐逻辑就很简单，获取用户类别X，拉取该类别X下的召回分TOPN作为召回队列</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/07/基于用户聚类的协同过滤/" itemprop="url">
-              
-                <span itemprop="name">TF-IDF,embedding</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-07T19:55:47+08:00" content="2019-05-07">
-          05-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/07/Scala诊断工具/" itemprop="url">
-              
-                <span itemprop="name">scala诊断工具</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-07T19:55:47+08:00" content="2019-05-07">
-          05-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/scala/" rel="tag"># scala</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/07/Scala诊断工具/" rel="next" title="scala诊断工具">
+                <i class="fa fa-chevron-left"></i> scala诊断工具
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/07/GBDT问题汇总/" rel="prev" title="GBDT问题汇总">
+                GBDT问题汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -457,6 +408,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -642,11 +597,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
 
 
   
