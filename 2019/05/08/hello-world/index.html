@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="博客">
 <meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
 <meta property="og:locale" content="中文">
-<meta property="og:updated_time" content="2019-05-08T11:40:30.000Z">
+<meta property="og:updated_time" content="2019-05-23T03:40:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hello World">
 <meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
@@ -338,6 +338,26 @@
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>xgboost叶子节点做one hot +原始特征的离散化 =&gt;多个LR模型</p>
+<p>Xgboost 树 200 深度7  2^7 *200 = 32**200 = 6400 </p>
+<p>xgboost 官方文档建议worker == cores  但是现在是worker:core = 1:2 </p>
+<p>spark.memory.fraction = 0.7 </p>
+<p>Xgboost Vs gdbt 消耗资源小一半的情况下，训练时间减少1半多</p>
+<p>One case  </p>
+<p>Pvid </p>
+<p>数据层问题</p>
+<p>1.训练样本丢失原因？</p>
+<p>2.采样</p>
+<p>3.模型现状，性能</p>
+<p>4.统计类的弊端怎么避免，很容易过拟合，而且统计类特征容易被攻击利用，</p>
+<p>转化率特征，没有考虑分母。怎么使用？</p>
+<p>统计类特征去解好坏，而不是好有多好，多好用长尾特征去解决</p>
+<p>转化率特征和曝光特征做特征交叉。</p>
+<p>user和item的细粒度特征，无论是用模型还是特征工程</p>
+<p>当天注册的新用户，当天的被曝光量，分性别</p>
+<p>附近的人，7天之后的一天</p>
+<p>附近动态，7天之后的一周</p>
+<p>5.</p>
 
       
     </div>
@@ -449,7 +469,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
