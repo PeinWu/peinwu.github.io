@@ -384,6 +384,140 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/08/Scala逆变和协变/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="peinwu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/08/Scala逆变和协变/" itemprop="url">Scala逆变</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-08T19:55:47+08:00">
+                2019-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">协变</span><br><span class="line">[+<span class="type">T</span>]可以用类型<span class="type">T</span>和<span class="type">T</span>的子类来赋值</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> s:<span class="type">AnyRef</span> = <span class="string">"abc"</span></span><br><span class="line">s: <span class="type">AnyRef</span> = abc</span><br><span class="line">scala&gt; <span class="keyword">var</span> objects : <span class="type">List</span>[<span class="type">AnyRef</span>] = <span class="type">List</span>[<span class="type">String</span>](<span class="string">"abc"</span>,<span class="string">"123"</span>)</span><br><span class="line">objects: <span class="type">List</span>[<span class="type">AnyRef</span>] = <span class="type">List</span>(abc, <span class="number">123</span>)</span><br><span class="line">因为在源码中<span class="type">List</span>支持协变的</span><br><span class="line">  <span class="class"><span class="keyword">type</span> <span class="title">List</span>[+<span class="type">A</span>] </span>= scala.collection.immutable.<span class="type">List</span>[<span class="type">A</span>]</span><br><span class="line">  <span class="keyword">val</span> <span class="type">List</span> = scala.collection.immutable.<span class="type">List</span></span><br><span class="line"></span><br><span class="line">不变</span><br><span class="line">[<span class="type">T</span>] 只能用类型<span class="type">T</span>来赋值</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">import</span> scala.collection.mutable._</span><br><span class="line"><span class="keyword">import</span> scala.collection.mutable._</span><br><span class="line"> </span><br><span class="line">scala&gt; <span class="keyword">val</span> a : <span class="type">MutableList</span>[<span class="type">AnyRef</span>] = <span class="type">MutableList</span>[<span class="type">String</span>](<span class="string">"abc"</span>)</span><br><span class="line">&lt;console&gt;:<span class="number">10</span>: error: <span class="class"><span class="keyword">type</span> <span class="title">mismatch</span></span>;</span><br><span class="line"> found   : scala.collection.mutable.<span class="type">MutableList</span>[<span class="type">String</span>]</span><br><span class="line"> required: scala.collection.mutable.<span class="type">MutableList</span>[<span class="type">AnyRef</span>]</span><br><span class="line"><span class="type">Note</span>: <span class="type">String</span> &lt;: <span class="type">AnyRef</span>, but <span class="class"><span class="keyword">class</span> <span class="title">MutableList</span> <span class="title">is</span> <span class="title">invariant</span> <span class="title">in</span> <span class="title">type</span> <span class="title">A</span>.</span></span><br><span class="line"><span class="class"><span class="title">You</span> <span class="title">may</span> <span class="title">wish</span> <span class="title">to</span> <span class="title">investigate</span> <span class="title">a</span> <span class="title">wildcard</span> <span class="title">type</span> <span class="title">such</span> <span class="title">as</span> `<span class="title">_</span> <span class="title">&lt;</span></span>: <span class="type">AnyRef</span>`. (<span class="type">SLS</span> <span class="number">3.2</span><span class="number">.10</span>)</span><br><span class="line">       <span class="keyword">val</span> a : <span class="type">MutableList</span>[<span class="type">AnyRef</span>] = <span class="type">MutableList</span>[<span class="type">String</span>](<span class="string">"abc"</span>)</span><br><span class="line">因为在源码中<span class="type">MutableList</span>是不变的</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MutableList</span>[<span class="type">A</span>]</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">逆变</span></span></span><br><span class="line"><span class="class">[-<span class="type">T</span>] <span class="title">只能用T的父类来替换T</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">Scala中</span>, <span class="title">界却用于泛型类中的方法的参数类型上</span>, <span class="title">如下面的例子</span>,<span class="title"> </span></span></span><br><span class="line"><span class="class"><span class="title">对于Queue中的append的类型参数直接写T</span>, <span class="title">会报错</span> (<span class="params">error: covariant type <span class="type">T</span> occurs in contravariant position in type <span class="type">T</span> of value x</span>)<span class="title"> </span></span></span><br><span class="line"><span class="class"><span class="title">这个地方比较复杂</span>, <span class="title">简单的说就是Scala内部实现是</span>, <span class="title">把类中的每个可以放类型的地方都做了分类</span>(<span class="params">+, –, 中立</span>), <span class="title">具体分类规则不说了 </span></span></span><br><span class="line"><span class="class"><span class="title">对于这里最外层类</span>[+<span class="type">T</span>]<span class="title">是协变</span>, <span class="title">但是到了方法的类型参数时</span>, <span class="title">该位置发生了翻转</span>, <span class="title">成为-逆变的位置</span>, <span class="title">所以你把T给他</span>, <span class="title">就会报错说你把一个协变类型放到了一个逆变的位置上</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">所以这里的处理的方法就是</span>, <span class="title">他要逆变</span>, <span class="title">就给他个逆变</span>, <span class="title">使用</span>[<span class="type">U</span> &gt;: <span class="type">T</span>], <span class="title">其中T为下界</span>, <span class="title">表示T或T的超类</span>, <span class="title">这样Scala编译器就不报错了</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">Queue</span>[+<span class="type">T</span>] (<span class="params">private val leading: <span class="type">List</span>[<span class="type">T</span>],</span></span></span><br><span class="line"><span class="class"><span class="params">                 private val trailing: <span class="type">List</span>[<span class="type">T</span>] </span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">append</span></span>[<span class="type">U</span> &gt;: <span class="type">T</span>](x: <span class="type">U</span>) = <span class="keyword">new</span> <span class="type">Queue</span>[<span class="type">U</span>](leading, x :: trailing) <span class="comment">//使用T的超类U来替换T</span></span><br><span class="line">&#125;</span><br><span class="line">同样对于上界也是,</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">OutputChannel</span>[-<span class="type">T</span>]</span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">write</span> </span>[<span class="type">U</span>&lt;:<span class="type">T</span>] (x: <span class="type">U</span>) <span class="comment">//使用T的子类U来替换T</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>协变</li>
+</ol>
+<p>[+T], covariant (or “flexible”) in its type parameter T，类似Java中的(? extends T), 即可以用T和T的子类来替换T，里氏替换原则。</p>
+<ol start="2">
+<li>不变</li>
+</ol>
+<p>不支持T的子类或者父类，只知支持T本身。</p>
+<p>3.逆变</p>
+<p>[-T], contravariant, 类似(? supers T) 只能用T的父类来替换T。是逆里氏替换原则。</p>
+<p>上界：</p>
+<p>只允许T的超类U来替换T。 [U &gt;: T]，和协变绑定</p>
+<p>下界：</p>
+<p>只允许T的子类U来替代T。 [U &lt;: T]，和逆变绑定</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/07/GBDT问题汇总/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -919,7 +1053,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -932,7 +1066,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>

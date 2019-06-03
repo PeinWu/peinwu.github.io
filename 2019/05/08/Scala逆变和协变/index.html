@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="中文">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="协变，逆变，不变，上界，下界,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849协变[+T]可以用类型T和T的子类来赋值scala&amp;gt; val s:AnyRef = &quot;abc&quot;s: AnyRef = abcscala&amp;gt; var objects : List[AnyRef] = List[St">
+<meta name="keywords" content="协变，逆变，不变，上界，下界">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scala逆变">
+<meta property="og:url" content="http://yoursite.com/2019/05/08/Scala逆变和协变/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849协变[+T]可以用类型T和T的子类来赋值scala&amp;gt; val s:AnyRef = &quot;abc&quot;s: AnyRef = abcscala&amp;gt; var objects : List[AnyRef] = List[St">
+<meta property="og:locale" content="中文">
+<meta property="og:updated_time" content="2019-06-03T08:50:24.057Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scala逆变">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849协变[+T]可以用类型T和T的子类来赋值scala&amp;gt; val s:AnyRef = &quot;abc&quot;s: AnyRef = abcscala&amp;gt; var objects : List[AnyRef] = List[St">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/08/Scala逆变和协变/">
+
+
+
+
+
+  <title>Scala逆变 | 博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="中文">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/08/Scala逆变和协变/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="peinwu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Scala逆变</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-08T19:55:47+08:00">
+                2019-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">协变</span><br><span class="line">[+<span class="type">T</span>]可以用类型<span class="type">T</span>和<span class="type">T</span>的子类来赋值</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> s:<span class="type">AnyRef</span> = <span class="string">"abc"</span></span><br><span class="line">s: <span class="type">AnyRef</span> = abc</span><br><span class="line">scala&gt; <span class="keyword">var</span> objects : <span class="type">List</span>[<span class="type">AnyRef</span>] = <span class="type">List</span>[<span class="type">String</span>](<span class="string">"abc"</span>,<span class="string">"123"</span>)</span><br><span class="line">objects: <span class="type">List</span>[<span class="type">AnyRef</span>] = <span class="type">List</span>(abc, <span class="number">123</span>)</span><br><span class="line">因为在源码中<span class="type">List</span>支持协变的</span><br><span class="line">  <span class="class"><span class="keyword">type</span> <span class="title">List</span>[+<span class="type">A</span>] </span>= scala.collection.immutable.<span class="type">List</span>[<span class="type">A</span>]</span><br><span class="line">  <span class="keyword">val</span> <span class="type">List</span> = scala.collection.immutable.<span class="type">List</span></span><br><span class="line"></span><br><span class="line">不变</span><br><span class="line">[<span class="type">T</span>] 只能用类型<span class="type">T</span>来赋值</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">import</span> scala.collection.mutable._</span><br><span class="line"><span class="keyword">import</span> scala.collection.mutable._</span><br><span class="line"> </span><br><span class="line">scala&gt; <span class="keyword">val</span> a : <span class="type">MutableList</span>[<span class="type">AnyRef</span>] = <span class="type">MutableList</span>[<span class="type">String</span>](<span class="string">"abc"</span>)</span><br><span class="line">&lt;console&gt;:<span class="number">10</span>: error: <span class="class"><span class="keyword">type</span> <span class="title">mismatch</span></span>;</span><br><span class="line"> found   : scala.collection.mutable.<span class="type">MutableList</span>[<span class="type">String</span>]</span><br><span class="line"> required: scala.collection.mutable.<span class="type">MutableList</span>[<span class="type">AnyRef</span>]</span><br><span class="line"><span class="type">Note</span>: <span class="type">String</span> &lt;: <span class="type">AnyRef</span>, but <span class="class"><span class="keyword">class</span> <span class="title">MutableList</span> <span class="title">is</span> <span class="title">invariant</span> <span class="title">in</span> <span class="title">type</span> <span class="title">A</span>.</span></span><br><span class="line"><span class="class"><span class="title">You</span> <span class="title">may</span> <span class="title">wish</span> <span class="title">to</span> <span class="title">investigate</span> <span class="title">a</span> <span class="title">wildcard</span> <span class="title">type</span> <span class="title">such</span> <span class="title">as</span> `<span class="title">_</span> <span class="title">&lt;</span></span>: <span class="type">AnyRef</span>`. (<span class="type">SLS</span> <span class="number">3.2</span><span class="number">.10</span>)</span><br><span class="line">       <span class="keyword">val</span> a : <span class="type">MutableList</span>[<span class="type">AnyRef</span>] = <span class="type">MutableList</span>[<span class="type">String</span>](<span class="string">"abc"</span>)</span><br><span class="line">因为在源码中<span class="type">MutableList</span>是不变的</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MutableList</span>[<span class="type">A</span>]</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">逆变</span></span></span><br><span class="line"><span class="class">[-<span class="type">T</span>] <span class="title">只能用T的父类来替换T</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">Scala中</span>, <span class="title">界却用于泛型类中的方法的参数类型上</span>, <span class="title">如下面的例子</span>,<span class="title"> </span></span></span><br><span class="line"><span class="class"><span class="title">对于Queue中的append的类型参数直接写T</span>, <span class="title">会报错</span> (<span class="params">error: covariant type <span class="type">T</span> occurs in contravariant position in type <span class="type">T</span> of value x</span>)<span class="title"> </span></span></span><br><span class="line"><span class="class"><span class="title">这个地方比较复杂</span>, <span class="title">简单的说就是Scala内部实现是</span>, <span class="title">把类中的每个可以放类型的地方都做了分类</span>(<span class="params">+, –, 中立</span>), <span class="title">具体分类规则不说了 </span></span></span><br><span class="line"><span class="class"><span class="title">对于这里最外层类</span>[+<span class="type">T</span>]<span class="title">是协变</span>, <span class="title">但是到了方法的类型参数时</span>, <span class="title">该位置发生了翻转</span>, <span class="title">成为-逆变的位置</span>, <span class="title">所以你把T给他</span>, <span class="title">就会报错说你把一个协变类型放到了一个逆变的位置上</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">所以这里的处理的方法就是</span>, <span class="title">他要逆变</span>, <span class="title">就给他个逆变</span>, <span class="title">使用</span>[<span class="type">U</span> &gt;: <span class="type">T</span>], <span class="title">其中T为下界</span>, <span class="title">表示T或T的超类</span>, <span class="title">这样Scala编译器就不报错了</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">Queue</span>[+<span class="type">T</span>] (<span class="params">private val leading: <span class="type">List</span>[<span class="type">T</span>],</span></span></span><br><span class="line"><span class="class"><span class="params">                 private val trailing: <span class="type">List</span>[<span class="type">T</span>] </span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">append</span></span>[<span class="type">U</span> &gt;: <span class="type">T</span>](x: <span class="type">U</span>) = <span class="keyword">new</span> <span class="type">Queue</span>[<span class="type">U</span>](leading, x :: trailing) <span class="comment">//使用T的超类U来替换T</span></span><br><span class="line">&#125;</span><br><span class="line">同样对于上界也是,</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">OutputChannel</span>[-<span class="type">T</span>]</span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">write</span> </span>[<span class="type">U</span>&lt;:<span class="type">T</span>] (x: <span class="type">U</span>) <span class="comment">//使用T的子类U来替换T</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>协变</li>
+</ol>
+<p>[+T], covariant (or “flexible”) in its type parameter T，类似Java中的(? extends T), 即可以用T和T的子类来替换T，里氏替换原则。</p>
+<ol start="2">
+<li>不变</li>
+</ol>
+<p>不支持T的子类或者父类，只知支持T本身。</p>
+<p>3.逆变</p>
+<p>[-T], contravariant, 类似(? supers T) 只能用T的父类来替换T。是逆里氏替换原则。</p>
+<p>上界：</p>
+<p>只允许T的超类U来替换T。 [U &gt;: T]，和协变绑定</p>
+<p>下界：</p>
+<p>只允许T的子类U来替代T。 [U &lt;: T]，和逆变绑定</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/协变，逆变，不变，上界，下界/" rel="tag"># 协变，逆变，不变，上界，下界</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/07/GBDT问题汇总/" rel="next" title="GBDT问题汇总">
+                <i class="fa fa-chevron-left"></i> GBDT问题汇总
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/22/ML 课程/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="peinwu">
+          <p class="site-author-name" itemprop="name">peinwu</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">peinwu</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

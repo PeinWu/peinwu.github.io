@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="scala, object,classc,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -94,18 +94,13 @@
 
 
 
-<meta name="description" content="class和object总结  case 关键词只用来修饰  class 和object，也就是说只有case class 和case object的存在  case object /class A 这个A 是经过序列化，而且继承了Product特性同时有toString,hashCode,copy,equals方法  有参用case class ,无参用case object  12case c">
-<meta name="keywords" content="scala, object,classc">
-<meta property="og:type" content="article">
-<meta property="og:title" content="scala object and class">
-<meta property="og:url" content="http://yoursite.com/2019/05/07/scala object and class/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="博客">
+<meta property="og:url" content="http://yoursite.com/tags/协变，逆变，不变，上界，下界/index.html">
 <meta property="og:site_name" content="博客">
-<meta property="og:description" content="class和object总结  case 关键词只用来修饰  class 和object，也就是说只有case class 和case object的存在  case object /class A 这个A 是经过序列化，而且继承了Product特性同时有toString,hashCode,copy,equals方法  有参用case class ,无参用case object  12case c">
 <meta property="og:locale" content="中文">
-<meta property="og:updated_time" content="2019-06-03T08:45:21.397Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="scala object and class">
-<meta name="twitter:description" content="class和object总结  case 关键词只用来修饰  class 和object，也就是说只有case class 和case object的存在  case object /class A 这个A 是经过序列化，而且继承了Product特性同时有toString,hashCode,copy,equals方法  有参用case class ,无参用case object  12case c">
+<meta name="twitter:title" content="博客">
 
 
 
@@ -134,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/07/scala object and class/">
+  <link rel="canonical" href="http://yoursite.com/tags/协变，逆变，不变，上界，下界/">
 
 
 
 
 
-  <title>scala object and class | 博客</title>
+  <title>Tag: 协变，逆变，不变，上界，下界 | 博客</title>
   
 
 
@@ -165,7 +160,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -249,161 +244,52 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block tag">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>协变，逆变，不变，上界，下界<small>Tag</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/07/scala object and class/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="peinwu">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="博客">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">scala object and class</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/2019/05/08/Scala逆变和协变/" itemprop="url">
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span itemprop="name">Scala逆变</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-07T19:55:47+08:00">
-                2019-05-07
-              </time>
-            
+            </a>
+        
+      </h2>
 
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-05-08T19:55:47+08:00" content="2019-05-08">
+          05-08
+        </time>
+      </div>
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>class和object总结</p>
-<ul>
-<li><p>case 关键词只用来修饰  class 和object，也就是说只有case class 和case object的存在</p>
-</li>
-<li><p>case object /class A 这个A 是经过序列化，而且继承了Product特性同时有toString,hashCode,copy,equals方法</p>
-</li>
-<li><p>有参用case class ,无参用case object</p>
-</li>
-<li><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span>(<span class="params">a:<span class="type">String</span></span>)</span></span><br><span class="line"><span class="class"><span class="title">case</span> <span class="title">object</span> <span class="title">Example1</span></span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/scala-object-classc/" rel="tag"># scala, object,classc</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/05/07/基于用户聚类的协同过滤/" rel="next" title="TF-IDF,embedding">
-                <i class="fa fa-chevron-left"></i> TF-IDF,embedding
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/07/Scala诊断工具/" rel="prev" title="scala诊断工具">
-                scala诊断工具 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
       
     </div>
+
   </div>
+  
+  
+  
+
+  
 
 
           </div>
@@ -411,10 +297,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -600,10 +482,10 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-
+  
 
   
 
